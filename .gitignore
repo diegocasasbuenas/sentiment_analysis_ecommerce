@@ -1,0 +1,15 @@
+# Excluir el ambiente virtual
+venv/
+uploader/
+
+# Excluir archivos de caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Excluir archivos grandes como modelos o datasets
+models/
+*.bin
+*.safetensors
+
