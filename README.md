@@ -33,40 +33,33 @@ Since the dataset lacks sentiment labels, we assigned labels based on the **star
 ---
 
 ## 📂 Project Structure
-SENTIMENT_ANALYSIS/
-│── api/
-│   ├── __pycache__/
-│   ├── sentiment_api.py
-│
-│── data/
-│   ├── processed/
-│   │   ├── test_data2.parquet
-│   │   ├── train_data2.parquet
-│   ├── raw/
-│   │   ├── download_raw.py
-│
-│── models/
-│   ├── download_models.py
-│
-│── notebooks/
-│   ├── EDA_amazon_reviews.ipynb
-│   ├── model_testing.ipynb
-│
-│── reports/
-│   ├── figures/
-│
-│── src/
-│   ├── __pycache__/
-│   ├── balance_classes.py
-│   ├── fasttext_model.py
-│   ├── preprocess_apr.py
-│   ├── roberta_model.py
-│
-│── streamlit_int/
-│
-│── .gitignore
-│── README.md
-│── requirements.txt
+
+📂 SENTIMENT_ANALYSIS/
+ ├── 📂 api/
+ │   ├── sentiment_api.py
+ ├── 📂 data/
+ │   ├── 📂 processed/
+ │   ├── test_data2.parquet
+ │   ├── train_data2.parquet
+ │   ├── 📂 raw/
+ │   │   ├── download_raw.py
+ ├── 📂 models/
+ │   ├── download_models.py
+ ├── 📂 notebooks/
+ │   ├── EDA_amazon_reviews.ipynb
+ │   ├── model_testing.ipynb
+ ├── 📂 reports/
+ │   ├── 📂 figures/
+ ├── 📂 src/
+ │   ├── balance_classes.py
+ │   ├── fasttext_model.py
+ │   ├── preprocess_apr.py
+ │   ├── roberta_model.py
+ ├── 📂 streamlit_int/
+ ├── .gitignore
+ ├── README.md
+ ├── requirements.txt
+
 
 
 🧪 Technologies Used
