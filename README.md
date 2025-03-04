@@ -1,61 +1,100 @@
 # Sentiment Analysis of Product Reviews 🐾
 
 ## 📜 Project Overview
-This project focuses on performing **sentiment analysis** on product reviews from **Amazon**, specifically for dog-related products. By analyzing textual reviews, the model can classify sentiments into **positive**, **neutral**, or **negative**, providing insights into customer satisfaction.
+This project focuses on performing **sentiment analysis** on product reviews from **Amazon**, specifically for pet products. By analyzing textual reviews, the model can classify sentiments into **positive** and **negative**, providing insights into customer satisfaction with sentiment analys. 
 
-The project is designed as a **portfolio piece** to showcase data science skills, including:
-- Natural Language Processing (NLP)
-- Machine learning model development and optimization
-- Data visualization and storytelling
-- Code modularity and best practices
+# Sentiment Analysis of Amazon Reviews for Pet Products
+
+The data comes from a **16M-row dataset** available at [Hugging Face](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023).
+
+## Data Processing
+
+A **large-scale dataset** was processed using the **RAPIDS** library, specifically **cuDF**, which accelerated the process and allowed us to refine the dataset to **300K well-processed rows** for training the sentiment analysis model.
+
+## Sentiment Labeling
+
+Since the dataset lacks sentiment labels, we assigned labels based on the **star rating**:
+
+- Reviews with **5 and 4 stars** were labeled as **positive sentiment**.
+- Reviews with **1 and 2 stars** were labeled as **negative sentiment**.
+- **3-star reviews** were removed, as they introduced bias and reduced the model’s ability to predict accurately during testing.
+
 
 ---
 
-## 🛠️ Features
-- **Preprocessing pipeline**: Clean and tokenize text data effectively.
-- **Embeddings**: Leverages **FastText** for creating word embeddings.
-- **Modeling**: Implements Logistic Regression and Support Vector Machines (SVM).
-- **Evaluation**: Provides detailed metrics (Accuracy, F1-score, Precision, Recall) and visualizations like confusion matrices.
-- **Exploratory Data Analysis (EDA)**: Uncovers patterns in the dataset using compelling visuals.
+### 🛠️ Features  
+- **Dataset Balancing**: The original **1,000,000-row dataset** was expanded and balanced by **star rating**, resulting in a **300,000-row dataset**.  
+- **Exploratory Data Analysis (EDA)**: Conducted an in-depth analysis to uncover key patterns in the data.  
+- **Model Testing**: Evaluated multiple models to determine the most effective approach.  
+- **Best Model Selection**: The best-performing model was a **transfer learning approach with RoBERTa**.  
+- **Deployment**: Used **FastAPI** and **Streamlit** to deploy and test the final model with real **Amazon reviews**. 🚀
+
 
 ---
 
 ## 📂 Project Structure
-```plaintext
-sentiment_analysis/
+SENTIMENT_ANALYSIS/
+│── api/
+│   ├── __pycache__/
+│   ├── sentiment_api.py
 │
-├── data/
-│   ├── raw/           # Original raw data
-│   ├── processed/     # Processed and cleaned data
+│── data/
+│   ├── processed/
+│   │   ├── test_data2.parquet
+│   │   ├── train_data2.parquet
+│   ├── raw/
+│   │   ├── download_raw.py
 │
-├── notebooks/         # Jupyter Notebooks for EDA and experiments
+│── models/
+│   ├── download_models.py
 │
-├── src/               # Source code
-│   ├── preprocessing.py        # Text cleaning and tokenization
-│   ├── feature_engineering.py  # Embedding generation
-│   ├── modeling.py             # Model training and evaluation
+│── notebooks/
+│   ├── EDA_amazon_reviews.ipynb
+│   ├── model_testing.ipynb
 │
-├── reports/
-│   ├── figures/       # Visualizations and graphs
-│   ├── final_report.pdf # Final presentation/report
+│── reports/
+│   ├── figures/
 │
-├── README.md          # Project documentation
-├── requirements.txt   # Python dependencies
-├── environment.yml    # Conda environment configuration
-└── main.py            # Main pipeline to execute the project
+│── src/
+│   ├── __pycache__/
+│   ├── balance_classes.py
+│   ├── fasttext_model.py
+│   ├── preprocess_apr.py
+│   ├── roberta_model.py
+│
+│── streamlit_int/
+│
+│── .gitignore
+│── README.md
+│── requirements.txt
+
 
 🧪 Technologies Used
 Programming: Python
-Libraries: pandas, numpy, matplotlib, seaborn, scikit-learn, fasttext
+
+Libraries:
+Data Manipulation and Processing: pandas, numpy, collections.Counter, joblib, os, Pathlib.
+Text Processing and NLP: spaCy, nltk, re, BeautifulSoup, WordCloud, STOPWORDS.
+Machine Learning Models: scikit-learn (for data splitting, scaling, dimensionality reduction, and classification), xgboost, fasttext, torch, transformers.
+Optimization and Training: torch.nn, torch.optim, Trainer, TrainingArguments.
+Model Evaluation: accuracy_score, classification_report.
+Data Visualization: matplotlib.pyplot, seaborn, plotly.express, wordcloud, umap.
+Others: logging, tqdm for progress bars.
 Tools: Jupyter Notebook, Git, Visual Studio Code
 
 📊 Results
-Model Accuracy: Achieved an accuracy of 83.6% using Logistic Regression and SVM.
+Model Accuracy: Achieved an accuracy of 90.0% using RoBERTa model.
 Insights:
-Positive reviews often mention keywords like "quality" and "price."
-Negative reviews frequently highlight "shipping" or "damage."
+The training of the sentiment analysis model using transfer learning yielded good results on the Amazon Reviews (Pet Products) dataset, as it was trained with positive and negative reviews. This means that 3-star reviews were excluded, as they were considered a source of bias.
 
-🤔 Future Work
-Deploy the model via an API or interactive web app.
-Experiment with deep learning models (e.g., LSTM, BERT) for improved performance.
-Explore unbalanced dataset techniques or exclude neutral reviews.
+During the development of this project, different models and text preprocessing techniques were tested, and it was found that RoBERTa (a Transformer model) is the best option for sentiment analysis, significantly outperforming traditional neural network models. This makes sense, considering that RoBERTa is a pretrained model specifically designed for text classification, making it more effective.
+
+On the other hand, text preprocessing plays a fundamental role in the success of the model. After experimenting with different approaches, the most effective method was found to be the use of regular expressions, specifically [^a-zA-Z0-9\s'], which removes all characters except letters, numbers, spaces, and apostrophes. This should be combined with removing extra spaces and converting all text to lowercase. A simple yet effective cleaning process will contribute more to the model's performance than any other step.
+
+The use of stopword lists is another key factor that helps preserve important word relationships. Even more crucial is ensuring that negations are not removed, as they can be 
+decisive in determining whether a review expresses a positive or negative sentiment.
+
+🤔 Deployment:
+The pre-trained model "sentiment_transformer_model", located in the models folder, has been deployed using FastAPI and Streamlit for local testing.
+
+You can find the corresponding code in the api and streamlit_int folders. You can run the appropriate scripts and test the model with real Amazon reviews focused on dog products. 
