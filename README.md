@@ -1,4 +1,4 @@
-# Sentiment Analysis of Product Reviews 🐾
+# Sentiment Analysis of Pet Product Reviews 🐾
 
 ### 📜 Project Overview
 This project focuses on performing **sentiment analysis** on product reviews from **Amazon**, specifically for pet products. By analyzing textual reviews, the model can classify sentiments into **positive** and **negative**, providing insights into customer satisfaction with sentiment analys. 
