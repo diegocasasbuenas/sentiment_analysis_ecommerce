@@ -1,13 +1,11 @@
 # Sentiment Analysis of Product Reviews 🐾
 
-## 📜 Project Overview
+### 📜 Project Overview
 This project focuses on performing **sentiment analysis** on product reviews from **Amazon**, specifically for pet products. By analyzing textual reviews, the model can classify sentiments into **positive** and **negative**, providing insights into customer satisfaction with sentiment analys. 
-
-# Sentiment Analysis of Amazon Reviews for Pet Products
 
 The data comes from a **16M-row dataset** available at [Hugging Face](https://huggingface.co/datasets/McAuley-Lab/Amazon-Reviews-2023).
 
-## Data Processing
+### Data Processing
 
 A **large-scale dataset** was processed using the **RAPIDS** library, specifically **cuDF**, which accelerated the process and allowed us to refine the dataset to **300K well-processed rows** for training the sentiment analysis model.
 
@@ -32,7 +30,7 @@ Since the dataset lacks sentiment labels, we assigned labels based on the **star
 
 ---
 
-## 📂 Project Structure
+### 📂 Project Structure
 ```
 SENTIMENT_ANALYSIS/
 ├── api/
